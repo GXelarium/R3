@@ -63,8 +63,8 @@ def resultado(operador: str, vector_1: list, vector_2: list):
     elif operador == '-':
       print(f"u = {vector_1} -> azul")
       print(f"v = {vector_2} -> amarrillo")
-      print(f"u-v = {res} -> verde\n\n\n")
       res = resta(vector_1, vector_2)
+      print(f"u-v = {res} -> verde\n\n\n")
 
       plt.plot3d(vector_1, vector_2, res)      
     
