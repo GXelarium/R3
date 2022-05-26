@@ -2,17 +2,30 @@ import cv2
 import easyocr
 
 def read():
+    op = int(input("""Selecciona la forma de lectura del problema:
+1) Imagen
+2) Teclado  
+Opcion: """))
+
+    if op == 1:
+        return imagen()
+    elif op ==2:
+        return teclado()
+    else: 
+        print("Selecciona una opcion válida")
+
+
+
+def imagen():
     reader = easyocr.Reader(["en"], gpu=True)
-    inp = input("Escribe el nombre de tu imagen: ")
+    inp = input("\nEscribe el nombre de tu imagen: ")
     image = cv2.imread(inp)
     result = reader.readtext(image)
 
     print(f'\nLa operación leida es: {result[0][1]}\n')
 
-    op = input("¿Quieres visualizar la imagen? Y/n: ")
-    if op == 'Y' or op == 'y':
-        print("\nPresiona enter para continuar")
-        show(image, result)
+    print("\nPresiona enter para continuar")
+    show(image, result)
     
     aux = result[0][1]
     return aux.replace(' ','')
@@ -41,6 +54,7 @@ def show(image, result):
     cv2.destroyAllWindows()
 
     
-
-
-
+def teclado():
+    prob = input("\nEscribe tu problema: ")
+    return prob.replace(' ', '')
+    
